@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ContactsControl.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsControl.Data
 {
@@ -8,5 +9,7 @@ namespace ContactsControl.Data
         {
 
         }
+
+        public DbSet<ContactModel> Contatos { get; set; }
     }
 }

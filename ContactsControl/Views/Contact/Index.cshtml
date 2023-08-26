@@ -23,16 +23,16 @@
     }
 
     <h1 class="display-4">Lista de Contatos</h1>
-    <table class="table">
+    <table class="table" id="table-contatos">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Celular</th>
-                <th scope="col">
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">E-mail</th>
+                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">
                     <div class="btn-group btn-wide" role="group">
-                        <a class="btn btn-success px-lg-2" role="button" asp-controller="Contact" asp-action="CreateContact">Adicionar Contato</a>
+                        <a class="btn btn-success px-lg-2" role="button" asp-controller="Contact" asp-action="CreateContact">Adicionar</a>
                     </div>
                 </th>
             </tr>

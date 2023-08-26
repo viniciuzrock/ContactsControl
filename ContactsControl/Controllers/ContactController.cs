@@ -35,31 +35,64 @@ namespace ContactsControl.Controllers
         [HttpPost]
         public IActionResult CreateContact(ContactModel contato) 
         {
-            if (ModelState.IsValid)//só envia requisição para o banco se os dados do form forem validos
+            try
             {
-                _contactRepository.AddContact(contato);
-                return RedirectToAction("Index");                
+                if (ModelState.IsValid)//requisição banco só com dados do form validos
+                {
+                    _contactRepository.AddContact(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso.";
+                    return RedirectToAction("Index");
+                }
+                return View(contato); //se nao, retorna os dados que foram enviados
             }
-            return View(contato); //se nao for valido, retorna os dados que foram enviados
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = "Não conseguimos cadastrar o seu contato, tente novamente.\n" +
+                    $"Detalhe do erro:{ex.Message}";
+                return RedirectToAction("Index");
+            }            
         }
 
         [HttpPost]
         public IActionResult AlterContact(ContactModel contato)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contactRepository.EditContact(contato);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.EditContact(contato);
+                    TempData["MensagemSucesso"] = "Contato atualizado com sucesso.";
+                    return RedirectToAction("Index");
+                }
+                return View("EditContact", contato);
             }
-            return View("EditContact",contato); //ele irá voltar para a view 'AlterContact' que não existe, então forçamos a view que ele deve buscar
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = "Não conseguimos atualizar o seu contato, tente novamente.\n" +
+                    $"Detalhe do erro:{ex.Message}";
+                return View("EditContact", contato); //ele irá voltar para a view 'AlterContact' que não existe, então forçamos a view que ele deve buscar
+            }
         }
 
         public IActionResult ConfirmDeleteContact(int id)
         {
-            Console.WriteLine("FUNÇÃO EXCLUIR CADASTRO");
-            _contactRepository.DeleteContact(id);
-            //_contactRepository.DeleteContact(contato);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.DeleteContact(id);
+                    TempData["MensagemSucesso"] = "Contato excluído com sucesso.";
+                    return RedirectToAction("Index");
+                }
+                ContactModel contato = _contactRepository.GetContact(id);
+                return View(contato);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = "Não conseguimos excluir o seu contato, tente novamente.\n" +
+                    $"Detalhe do erro:{ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

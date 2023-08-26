@@ -13,13 +13,12 @@ namespace ContactsControl
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             
-            //builder.Services.AddDbContext<DataBaseContext>(conn => {
-                builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(conn =>
-                {
-                    conn.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"), sqlServerOptionsAction: sqlOptions =>
-                {
-                    sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-                });
+            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(conn =>
+            {
+               conn.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"), sqlServerOptionsAction: sqlOptions =>
+               {
+                  sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+               });
             });
 
             builder.Services.AddScoped<IContactRepository, ContactRepository>();

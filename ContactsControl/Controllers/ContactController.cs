@@ -34,16 +34,24 @@ namespace ContactsControl.Controllers
 
         [HttpPost]
         public IActionResult CreateContact(ContactModel contato) 
-        { 
-            _contactRepository.AddContact(contato);
-            return RedirectToAction("Index"); //retorna para uma ação, no caso index
+        {
+            if (ModelState.IsValid)//só envia requisição para o banco se os dados do form forem validos
+            {
+                _contactRepository.AddContact(contato);
+                return RedirectToAction("Index");                
+            }
+            return View(contato); //se nao for valido, retorna os dados que foram enviados
         }
 
         [HttpPost]
         public IActionResult AlterContact(ContactModel contato)
         {
-            _contactRepository.EditContact(contato);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contactRepository.EditContact(contato);
+                return RedirectToAction("Index");
+            }
+            return View("EditContact",contato); //ele irá voltar para a view 'AlterContact' que não existe, então forçamos a view que ele deve buscar
         }
 
         public IActionResult ConfirmDeleteContact(int id)

@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.field-validation-error {
+    color:#e01d1d;
+    font-style: italic;
+    padding-left:5px;
+}

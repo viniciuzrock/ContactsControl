@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ContactsControl.Models
 {
-    public class UserModel
+    public class EditUserModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Digite o nome do usuário.")]
@@ -13,11 +13,7 @@ namespace ContactsControl.Models
         [Required(ErrorMessage = "Digite o e-mail do usuário.")]
         [EmailAddress(ErrorMessage = "O e-mail informado não é válido.")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Digite a senha do usuário.")]
-        public string Senha{ get; set; }
         [Required(ErrorMessage = "Digite o perfil do usuário.")]
         public ProfileEnum? Perfil { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime? DataAtualizacao{ get; set; }
     }
 }

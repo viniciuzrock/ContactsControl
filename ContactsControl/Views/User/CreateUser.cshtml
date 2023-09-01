@@ -23,7 +23,7 @@
         <div class="mb-3">
             <label for="Perfil" class="form-label">Perfil</label>
             <select class="form-control" asp-for="Perfil"> @*asp-for => faz referencia a tabela nos models (banco de dados) *@
-                <option value="0" selected disabled>Selecione</option>
+                <option value="">Selecione</option>
                 <option value="@ProfileEnum.Admin">Administrador</option>
                 <option value="@ProfileEnum.Padrao">Padrão</option>
             </select>

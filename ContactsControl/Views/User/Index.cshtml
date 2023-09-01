@@ -30,6 +30,7 @@
                 <th scope="col" class="text-center">Nome</th>
                 <th scope="col" class="text-center">Login</th>
                 <th scope="col" class="text-center">E-mail</th>
+                <th scope="col" class="text-center">Perfil</th>
                 <th scope="col" class="text-center">Data de Cadastro</th>
                 <th scope="col" class="text-center">
                     <div class="btn-group btn-wide" role="group">
@@ -48,6 +49,7 @@
                         <td class="align-middle">@user.Nome</td>
                         <td class="align-middle">@user.Login</td>
                         <td class="align-middle">@user.Email</td>
+                        <td class="align-middle">@(user.Perfil == ContactsControl.Enums.ProfileEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td class="align-middle">@user.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">

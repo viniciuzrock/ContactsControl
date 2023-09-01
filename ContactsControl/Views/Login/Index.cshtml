@@ -1,6 +1,29 @@
-﻿@{
+﻿@model LoginModel
+@{
     Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Login";
 }
 
-<p>Tela login</p>
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-controller="Login" asp-action="Enter" method="post">
+    <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" asp-for="Login" class="form-control">
+        @Html.ValidationMessageFor(msg => msg.Login)
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" asp-for="Password" class="form-control">
+        @Html.ValidationMessageFor(msg => msg.Password)
+    </div>
+    <div class="d-flex flex-column">
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+    </div>
+</form>

@@ -1,0 +1,49 @@
+﻿@using ContactsControl.Enums;
+@model UserModel
+@{
+    ViewData["Title"] = "Criar Usuários";
+}
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Usuário</h1>
+</div>
+
+
+<form class="px-5" asp-controller="User" asp-action="CreateUser" method="post">
+    <div class="container px-5">
+        <div class="mb-3">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" asp-for="Nome" placeholder="Digite o nome do usuário">
+            @Html.ValidationMessageFor(msg => msg.Nome)
+        </div>
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Digite o e-mail do usuário">
+            @Html.ValidationMessageFor(msg => msg.Email)
+        </div>
+        <div class="mb-3">
+            <label for="Perfil" class="form-label">Perfil</label>
+            <select class="form-control" asp-for="Perfil"> @*asp-for => faz referencia a tabela nos models (banco de dados) *@
+                <option value="0" selected disabled>Selecione</option>
+                <option value="@ProfileEnum.Admin">Administrador</option>
+                <option value="@ProfileEnum.Padrao">Padrão</option>
+            </select>
+            @Html.ValidationMessageFor(msg => msg.Perfil)
+        </div>
+        <div class="mb-3">
+            <label for="Celular" class="form-label">Login</label>
+            <input type="text" class="form-control" asp-for="Login" placeholder="Digite o login do usuário">
+            @Html.ValidationMessageFor(msg => msg.Login)
+        </div>
+        <div class="mb-3">
+            <label for="Celular" class="form-label">Senha</label>
+            <input type="password" class="form-control" asp-for="Senha" placeholder="Digite a senha do usuário">
+            @Html.ValidationMessageFor(msg => msg.Senha)
+        </div>
+
+        <div class="d-flex flex-column">
+            <button type="submit" class="btn btn-primary btn-block mb-2">Cadastrar</button>
+            <a class="btn btn-secondary btn-block" asp-controller="Contact" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</form>
+

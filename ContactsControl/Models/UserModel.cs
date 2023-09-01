@@ -19,5 +19,9 @@ namespace ContactsControl.Models
         public ProfileEnum? Perfil { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao{ get; set; }
+        public bool PasswordIsValid(string password)
+        {
+            return Senha == password;
+        }
     }
 }

@@ -11,6 +11,10 @@ namespace ContactsControl.Repository
         {
             _bancoContext = bancoContext;
         }
+        public UserModel GetUserByLogin(string login)
+        {            
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Login.ToLower() == login.ToLower());
+        }
 
         public bool DeleteUser(int id)
         {

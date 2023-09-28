@@ -1,9 +1,11 @@
-﻿using ContactsControl.Models;
+﻿using ContactsControl.Filters;
+using ContactsControl.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ContactsControl.Controllers
 {
+    [PaginaUsuarioLogado]
     public class HomeController : Controller
     {
         public IActionResult Index()
